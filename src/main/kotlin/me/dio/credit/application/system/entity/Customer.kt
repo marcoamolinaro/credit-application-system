@@ -19,7 +19,7 @@ data class Customer (
     val cpf: String,
 
     @Column(nullable = false)
-    val income: BigDecimal = BigDecimal.ZERO,
+    var income: BigDecimal = BigDecimal.ZERO,
 
     @Column(nullable = false, unique = true)
     var email: String = "",

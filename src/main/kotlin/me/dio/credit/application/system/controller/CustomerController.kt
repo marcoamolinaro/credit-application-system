@@ -1,16 +1,11 @@
 package me.dio.credit.application.system.controller
 
 import me.dio.credit.application.system.dto.CustomerDTO
+import me.dio.credit.application.system.dto.CustomerUpdateDto
 import me.dio.credit.application.system.dto.CustomerView
 import me.dio.credit.application.system.entity.Customer
 import me.dio.credit.application.system.service.impl.CustomerService
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/customers")
@@ -32,4 +27,13 @@ class CustomerController(
 
     @DeleteMapping("{id}")
     fun deleteCustomer(@PathVariable id: Long) = this.customerService.delete(id)
+
+    @PatchMapping
+    fun updateCustomer(@RequestParam(value = "customerId") id: Long,
+                       @RequestBody customerUpdateDto: CustomerUpdateDto): CustomerView {
+        val customer: Customer = this.customerService.findById(id)
+        val customerToUpdate = customerUpdateDto.toEntity(customer)
+        val customerUpdated: Custoner = this.customerService.save(customerToUpdate)
+        return CustomerView(customerUpdated)
+    }
 }
