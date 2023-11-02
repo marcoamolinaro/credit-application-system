@@ -33,7 +33,7 @@ class CustomerController(
                        @RequestBody customerUpdateDto: CustomerUpdateDto): CustomerView {
         val customer: Customer = this.customerService.findById(id)
         val customerToUpdate = customerUpdateDto.toEntity(customer)
-        val customerUpdated: Custoner = this.customerService.save(customerToUpdate)
+        val customerUpdated: Customer = this.customerService.save(customerToUpdate)
         return CustomerView(customerUpdated)
     }
 }
