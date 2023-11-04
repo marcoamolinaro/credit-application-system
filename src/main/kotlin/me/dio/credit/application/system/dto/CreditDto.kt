@@ -1,6 +1,7 @@
 package me.dio.credit.application.system.dto
 
 import me.dio.credit.application.system.entity.Credit
+import me.dio.credit.application.system.entity.Customer
 import java.math.BigDecimal
 import java.time.LocalDate
 

@@ -4,7 +4,7 @@ import jakarta.persistence.*
 import java.math.BigDecimal
 
 @Entity
-data class Customer (
+data class Customer(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
@@ -16,7 +16,7 @@ data class Customer (
     var lastName: String = "",
 
     @Column(nullable = false, unique = true)
-    var cpf: String,
+    var cpf: String = "",
 
     @Column(nullable = false)
     var income: BigDecimal = BigDecimal.ZERO,
@@ -31,9 +31,11 @@ data class Customer (
     @Column(nullable = false)
     var address: Address = Address(),
 
-    @OneToMany(fetch = FetchType.LAZY,
+    @OneToMany(
+        fetch = FetchType.LAZY,
         cascade = [CascadeType.REMOVE, CascadeType.PERSIST],
-        mappedBy = "customer")
+        mappedBy = "customer"
+    )
     @Column(nullable = false)
     var credit: List<Credit> = mutableListOf()
 )

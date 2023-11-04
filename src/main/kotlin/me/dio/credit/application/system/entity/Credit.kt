@@ -4,7 +4,7 @@ import jakarta.persistence.*
 import me.dio.credit.application.system.enummeration.Status
 import java.math.BigDecimal
 import java.time.LocalDate
-import java.util.UUID
+import java.util.*
 
 @Entity
 data class Credit(
