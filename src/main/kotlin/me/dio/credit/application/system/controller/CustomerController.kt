@@ -1,6 +1,6 @@
 package me.dio.credit.application.system.controller
 
-import me.dio.credit.application.system.dto.CustomerDTO
+import me.dio.credit.application.system.dto.CustomerDto
 import me.dio.credit.application.system.dto.CustomerUpdateDto
 import me.dio.credit.application.system.dto.CustomerView
 import me.dio.credit.application.system.entity.Customer
@@ -16,7 +16,7 @@ class CustomerController(
 ) {
 
     @PostMapping
-    fun saveCustomer(@RequestBody customerDto: CustomerDTO): ResponseEntity<String> {
+    fun saveCustomer(@RequestBody customerDto: CustomerDto): ResponseEntity<String> {
         val savedCustomer = this.customerService.save(customerDto.toEntity())
         val result: String = "Customer ${savedCustomer.email} saved!"
         return ResponseEntity.status(HttpStatus.CREATED).body(result)
