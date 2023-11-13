@@ -12,7 +12,7 @@ class CustomerService(
 ) : ICustomerService {
     override fun save(customer: Customer): Customer = this.customerRepository.save(customer)
     override fun findById(id: Long): Customer = this.customerRepository.findById(id).orElseThrow {
-        throw BusinessException("Id not found")
+        throw BusinessException("Id $id not found")
     }
 
     override fun delete(id: Long) {
